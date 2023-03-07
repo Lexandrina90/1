@@ -1,3 +1,19 @@
+let deepClone =  function(arg) {
+  if (!arg || typeof arg !== 'object') {
+    return arg;
+  }
+  if (Array.isArray(arg)) {
+   return arg.map(deepClone);
+  }
+  const newObj = {...arg};
+  for(key in newObj) {
+     newObj[key] = deepClone(newObj[key])
+  }
+return newObj;
+}
+
+
+/*
 let deepClone = function (value) {
   if (!value || typeof value !== 'object') {
     return value;
@@ -13,12 +29,7 @@ let deepClone = function (value) {
   });
 
   return clonedObject;
-}
-let o = [1, 2, 3, { a: 'a', b: 123, c: 321 }];
-let o1 = deepClone(o);
-console.log(o == o1);
-console.log(o1);
-
+*/
 /*
 if (Array.isArray(arg)) {
     return arg.map((item) => {
