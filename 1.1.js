@@ -5,7 +5,7 @@ let deepClone =  function(arg) {
   if (Array.isArray(arg)) {
    return arg.map(deepClone);
   }
-  const newObj = {...arg};
+  const newObj = {};
   for(key in newObj) {
      newObj[key] = deepClone(newObj[key])
   }
