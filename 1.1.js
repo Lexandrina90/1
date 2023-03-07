@@ -1,32 +1,23 @@
-let deepClone = function (arg) {
-  if (arg === null) return null;
-  let newObj = Object.assign({}, arg);
-  for (key in newObj) {
-    for (let i = 0; i < key.length; i++) {
-      if (typeof arg[i] === 'object') {
-        newObj[i] = deepClone(arg[i])
-      } else {
-        newObj[i] = arg[i];
-      }
-    }
+let deepClone = function (value) {
+  if (!value || typeof value !== 'object') {
+    return value;
   }
-  if (Array.isArray(arg)) {
-    newObj.length = arg.length;
-    return Array.from(newObj);
-  }
-  return newObj;
-};
 
-let user = {
-  name: "John",
-  sizes: {
-    height: 182,
-    width: 50
+  if (Array.isArray(value)) {
+    return value.map(deepClone);
   }
-};
-let user2 = deepClone(user);
 
-console.log(user == user2);
+  const clonedObject = {};
+  Object.entries(value).forEach(([key, fieldValue]) => {
+    clonedObject[key] = deepClone(fieldValue);
+  });
+
+  return clonedObject;
+}
+let o = [1, 2, 3, { a: 'a', b: 123, c: 321 }];
+let o1 = deepClone(o);
+console.log(o == o1);
+console.log(o1);
 
 /*
 if (Array.isArray(arg)) {
