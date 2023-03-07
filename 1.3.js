@@ -1,4 +1,4 @@
-function matrix(size) {
+let matrix = function(size) {
     let result = new Array(size).fill().map(() => new Array(size).fill('')); // создаем пустой массив n x n 
     let counter = 1;
     let startCol = 0;
